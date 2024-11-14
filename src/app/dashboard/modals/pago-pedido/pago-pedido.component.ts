@@ -67,6 +67,7 @@ export class PagoPedidoComponent implements OnInit {
         formData.append('tipo', this.form.get('tipo')?.value);
 
         // Realiza la solicitud HTTP para procesar el pago
+        console.log('enviroment ',`${environment.apiUrl}`);
         this.http.post(`${environment.apiUrl}/api/pagos/registrar`, formData).subscribe(
           (response: any) => {
             if (response.success) {

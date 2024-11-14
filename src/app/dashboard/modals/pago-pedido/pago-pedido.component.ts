@@ -67,7 +67,7 @@ export class PagoPedidoComponent implements OnInit {
         formData.append('tipo', this.form.get('tipo')?.value);
 
         // Realiza la solicitud HTTP para procesar el pago
-        this.http.post('${environment.apiUrl}/api/pagos/registrar', formData).subscribe(
+        this.http.post(`${environment.apiUrl}/api/pagos/registrar`, formData).subscribe(
           (response: any) => {
             if (response.success) {
               Swal.fire('Éxito', 'Pago procesado correctamente. Mientras un administrados procesa su pago por favor registre sus datos para el delivery.', 'success').then(() => {

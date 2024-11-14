@@ -17,7 +17,7 @@ const routes: Routes = [
       // Declara RegisterComponent aquí
   ],
   imports: [
-    //CommonModule,  // Importa CommonModule para funcionalidades básicas de Angular
+    CommonModule,  // Importa CommonModule para funcionalidades básicas de Angular
     FormsModule,
     LoginRoutingModule,
     ToastModule,

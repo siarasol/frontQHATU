@@ -10,11 +10,12 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}api/usuarios/login`;
+  private apiUrl = `${environment.apiUrl}/api/usuarios/login`;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   login(usuario: string, password: string): Observable<any> {
+    console.log('ya esta esto');
     return this.http.post<any>(`${this.apiUrl}?usuario=${usuario}&password=${password}`, {}).pipe(
       tap(response => {
         if (response.success) {

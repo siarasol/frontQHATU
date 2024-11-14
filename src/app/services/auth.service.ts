@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/api/usuarios/login`;
-
+ // private apiUrl = `https://backqathu-production.up.railway.app/api/usuarios/login`;
   constructor(private http: HttpClient, private router: Router) {}
 
   login(usuario: string, password: string): Observable<any> {

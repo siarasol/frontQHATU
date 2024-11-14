@@ -1,0 +1,93 @@
+<div class="d-flex flex-column flex-md-row vh-100">
+  <!-- Sidebar -->
+  <nav class="sidebar bg-dark p-3 shadow-lg d-flex flex-column justify-content-between" [ngClass]="{'collapsed': sidebarCollapsed}">
+    <div>
+      <div class="user-info text-white mb-4" *ngIf="!sidebarCollapsed">
+        <h5><i class="pi pi-user mr-2"></i> Usuario: <strong>{{ userData?.usuario || 'Invitado' }}</strong></h5>
+        <p><i class="pi pi-id-card mr-2"></i> Perfil: <small>{{ userData?.rol?.nombre || 'Sin rol' }}</small></p>
+      </div>
+
+      <ul class="nav flex-column">
+        <!-- Opción para Vendedor -->
+        <li class="nav-item" *ngIf="isVendedor || isAdmin">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="mis-productos">
+            <i class="pi pi-box"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Mis Productos</span>
+          </a>
+        </li>
+
+        <!-- Opción para Comprador -->
+        <li class="nav-item" *ngIf="isComprador || isAdmin">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="productos">
+            <i class="pi pi-tags"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Productos</span>
+          </a>
+        </li>
+
+        <!-- Seguimiento Compras para Comprador y Admin -->
+        <li class="nav-item" *ngIf="isComprador || isAdmin">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="seguimiento-compras">
+            <i class="pi pi-shopping-cart"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Seguimiento Compras</span>
+          </a>
+        </li>
+
+        <!-- Opciones para Administrador -->
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="reportes">
+            <i class="pi pi-chart-bar"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Reportes</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="pedidos">
+            <i class="pi pi-chart-bar"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Pedidos</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="delivery">
+            <i class="pi pi-truck"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Delivery</span>
+          </a>
+        </li>
+
+        <!-- Opción de cerrar sesión, visible para todos -->
+        <li class="nav-item">
+          <a class="nav-link text-danger d-flex align-items-center" routerLink="/login">
+            <i class="pi pi-sign-out"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Botón para colapsar/expandir el sidebar -->
+    <button (click)="toggleSidebar()" class="btn btn-primary mt-3">
+      <i class="pi" [ngClass]="sidebarCollapsed ? 'pi-angle-double-right' : 'pi-angle-double-left'"></i>
+    </button>
+  </nav>
+
+  <!-- Main content -->
+  <div class="main-content flex-fill d-flex flex-column">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary shadow-sm sticky-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <span class="navbar-brand text-white">
+          <i class="pi pi-home mr-2"></i> ¡QHATU BOLIVIA!
+        </span>
+      </div>
+    </nav>
+
+    <div class="content p-4 flex-grow-1 overflow-auto">
+      <router-outlet></router-outlet> <!-- Aquí se cargará el contenido dinámico -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center p-3 mt-auto">
+      <p class="mb-0">&copy; 2024 QHATU. SOLEDAD QUIROGA FERNANDEZ Todos los derechos reservados.</p>
+    </footer>
+  </div>
+</div>

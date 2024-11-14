@@ -1,0 +1,37 @@
+<header class="d-flex flex-column align-items-center">
+  <!-- Navbar mejorada -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold text-primary" href="#">QHATO Bolivia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link active fw-bold" aria-current="page" routerLink="/home">Inicio</a>
+          <a class="nav-link fw-bold" routerLink="/quienes-somos">¿Quiénes Somos?</a>
+          <a class="nav-link fw-bold" routerLink="/contacto">Contáctanos</a>
+          <a class="nav-link fw-bold text-success" routerLink="/login">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Carrusel actualizado -->
+  <div class="carousel-container w-100 mt-3">
+    <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" styleClass="custom-carousel shadow-lg">
+      <ng-template pTemplate="item" let-image>
+        <img [src]="image" alt="Imagen Carrusel" class="d-block w-100 img-fluid rounded carousel-image" />
+      </ng-template>
+    </p-carousel>
+  </div>
+</header>
+
+<div class="main-content text-center p-5">
+  <h1 class="display-4 fw-bold text-primary">Bienvenidos a QHATO Bolivia</h1>
+  <p class="lead text-muted">Tu plataforma de comercio para productos bolivianos. Encuentra lo mejor de nuestra cultura y mercado en un solo lugar.</p>
+  <button pButton label="Descargar Aplicación" class="p-button-success mt-3"></button>
+</div>
+
+<router-outlet></router-outlet>
+´

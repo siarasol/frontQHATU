@@ -1,0 +1,7 @@
+.container {
+  max-width: 600px;
+}
+/* Aumentar el z-index de SweetAlert2 para que esté sobre el modal */
+/* Eleva el z-index del contenedor de SweetAlert2 */
+
+

@@ -1,0 +1,12 @@
+.modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.table {
+  font-size: 0.9rem;
+}
+
+.modal-footer {
+  border-top: none;
+}

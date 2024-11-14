@@ -1,0 +1,169 @@
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-dark">
+  <div class="card shadow-lg" style="width: 28rem;">
+    <div class="card-body">
+      <h3 class="card-title text-center">Crear Cuenta</h3>
+      <p-toast></p-toast>
+      <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm" novalidate>
+
+        <!-- Nombre de Usuario -->
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Nombre de Usuario</label>
+          <input
+            type="text"
+            [(ngModel)]="usuarioForm.usuario"
+            name="usuario"
+            class="form-control"
+            id="usuario"
+            placeholder="Nombre de Usuario"
+            required
+            #usuario="ngModel">
+          <div *ngIf="usuario.invalid && usuario.touched" class="text-danger">
+            El nombre de usuario es requerido.
+          </div>
+        </div>
+
+        <!-- Correo Electrónico -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input
+            type="email"
+            [(ngModel)]="usuarioForm.email"
+            name="email"
+            class="form-control"
+            id="email"
+            placeholder="Correo Electrónico"
+            required
+            email
+            #email="ngModel">
+          <div *ngIf="email.invalid && email.touched" class="text-danger">
+            Ingresa un correo electrónico válido.
+          </div>
+        </div>
+
+        <!-- Nombres -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombres</label>
+          <input
+            type="text"
+            [(ngModel)]="usuarioForm.nombre"
+            name="nombre"
+            class="form-control"
+            id="nombre"
+            placeholder="Nombre Completo"
+            required
+            #nombre="ngModel">
+          <div *ngIf="nombre.invalid && nombre.touched" class="text-danger">
+            El nombre es requerido.
+          </div>
+        </div>
+
+        <!-- Apellido Paterno -->
+        <div class="mb-3">
+          <label for="paterno" class="form-label">Apellido Paterno</label>
+          <input
+            type="text"
+            [(ngModel)]="usuarioForm.paterno"
+            name="paterno"
+            class="form-control"
+            id="paterno"
+            placeholder="Apellido Paterno"
+            required
+            #paterno="ngModel">
+          <div *ngIf="paterno.invalid && paterno.touched" class="text-danger">
+            El apellido paterno es requerido.
+          </div>
+        </div>
+
+        <!-- Apellido Materno -->
+        <div class="mb-3">
+          <label for="materno" class="form-label">Apellido Materno</label>
+          <input
+            type="text"
+            [(ngModel)]="usuarioForm.materno"
+            name="materno"
+            class="form-control"
+            id="materno"
+            placeholder="Apellido Materno"
+            required
+            #materno="ngModel">
+          <div *ngIf="materno.invalid && materno.touched" class="text-danger">
+            El apellido materno es requerido.
+          </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input
+            type="password"
+            [(ngModel)]="usuarioForm.password"
+            name="password"
+            class="form-control"
+            id="password"
+            placeholder="Contraseña"
+            required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+            #password="ngModel">
+          <div *ngIf="password.invalid && password.touched" class="text-danger">
+            La contraseña debe tener al menos 6 caracteres, incluir una mayúscula, una minúscula, un número y un carácter especial.
+          </div>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input
+            type="text"
+            [(ngModel)]="usuarioForm.telefono"
+            name="telefono"
+            class="form-control"
+            id="telefono"
+            placeholder="Teléfono"
+            required
+            pattern="^[0-9]{8}$"
+            #telefono="ngModel">
+          <div *ngIf="telefono.invalid && telefono.touched" class="text-danger">
+            El teléfono debe tener exactamente 8 dígitos.
+          </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="mb-3">
+          <label for="direccion" class="form-label">Dirección</label>
+          <input
+            type="text"
+            [(ngModel)]="usuarioForm.direccion"
+            name="direccion"
+            class="form-control"
+            id="direccion"
+            placeholder="Dirección"
+            required
+            #direccion="ngModel">
+          <div *ngIf="direccion.invalid && direccion.touched" class="text-danger">
+            La dirección es requerida.
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            pButton
+            label="Atrás"
+            class="p-button p-button-danger me-2"
+            routerLink="/login" >Atrás
+          </button>
+
+          <button
+            type="submit"
+            pButton
+            label="Registrarse"
+            class="p-button p-button-primary"
+            [disabled]="registerForm.invalid">Registrarse</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

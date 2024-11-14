@@ -1,0 +1,38 @@
+/* Estilos para hacer el modal responsivo */
+.delivery-form {
+  padding: 1rem;
+}
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+/* Ajustes de ancho para dispositivos más pequeños */
+@media (max-width: 768px) {
+  .p-dialog {
+    width: 90vw !important;  /* Ajusta el ancho al 90% de la vista en dispositivos móviles */
+    max-width: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .p-dialog {
+    width: 400px;
+  }
+}
+.p-inputtext, .p-component, .p-button {
+  width: 100%;  /* Hace que los inputs y botones ocupen el ancho del contenedor en dispositivos pequeños */
+}
+.modal-body {
+  padding: 1rem;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}

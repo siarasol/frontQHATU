@@ -1,0 +1,32 @@
+<p-dialog [(visible)]="isDialogVisible" [modal]="true" [responsive]="true" [closable]="true" [style]="{ width: '60vw', height: 'auto', maxWidth: '90vw', maxHeight: '90vh' }" contentStyle="{ padding: '20px' }">
+  <div class="dialog-content">
+    <h2 class="modal-title">Confirmar Pago</h2>
+
+    <!-- QR Code centrado y cuadrado -->
+    <div class="qr-container">
+      <img src="assets/qr-code.jpg" alt="Código QR" class="qr-image" />
+    </div>
+
+    <!-- Mensaje de monto a pagar -->
+    <p class="amount-info">
+      <strong>Monto del Pedido:</strong> Bs {{ total }}
+    </p>
+    <p class="instructions">
+      Asegúrese de pagar el monto indicado del pedido.
+    </p>
+
+    <!-- Subir comprobante con diseño personalizado -->
+    <div class="upload-container">
+      <label for="file-upload" class="upload-button">
+        <i class="pi pi-upload"></i> Adjuntar Comprobante
+      </label>
+      <input id="file-upload" type="file" (change)="onFileChange($event)" accept="image/jpeg, image/png" />
+      <small class="file-info">Formatos permitidos: JPG, PNG</small>
+    </div>
+
+    <!-- Botón de Procesar Pago -->
+    <button pButton label="Procesar Pago" icon="pi pi-check" class="confirm-button" (click)="procesarPago()">
+      Procesar Pago
+    </button>
+  </div>
+</p-dialog>

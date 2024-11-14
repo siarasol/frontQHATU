@@ -1,0 +1,105 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #007ad9;
+  margin-bottom: 1rem;
+}
+
+.qr-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.qr-image {
+  width: 220px; /* Ajusta el tamaño aquí según sea necesario */
+  height: 220px; /* Asegura que sea cuadrado */
+  border: 2px solid #007ad9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.amount-info {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.instructions {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.upload-button {
+  cursor: pointer;
+  background-color: #007ad9;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #005bb5;
+}
+
+input[type="file"] {
+  display: none; /* Ocultar input de archivo */
+}
+
+.file-info {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.confirm-button {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .qr-image {
+    width: 150px; /* Tamaño responsivo */
+    height: 150px; /* Tamaño responsivo */
+  }
+  .modal-title, .amount-info {
+    font-size: 1.2rem;
+  }
+  .instructions {
+    font-size: 0.9rem;
+  }
+  .upload-button, .confirm-button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}

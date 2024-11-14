@@ -1,0 +1,72 @@
+<div class="container mt-4">
+  <h3 class="text-center">Seguimiento de Compras</h3>
+
+  <p-table [value]="pedidos" [paginator]="true" [rows]="10" [loading]="loading" [totalRecords]="totalRecords" class="text-center">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <!-- <th>ID</th> -->
+        <th>Estado</th>
+        <th>Fecha de Creación</th>
+        <th>Dirección</th>
+        <th>Total Pedido</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pedido let-i="rowIndex">
+      <tr>
+        <td class="text-center">{{ i + 1 }}</td>
+       <!--  <td>{{ pedido.id }}</td> -->
+        <td class="text-center">{{ pedido.estado }}</td>
+        <td class="text-center">{{ formatearFecha(pedido.createdAt) }}</td>
+        <td class="text-center">{{ pedido.direccion }}</td>
+        <td class="text-center">{{ pedido.total }}</td>
+        <td class="text-center">
+          <div class="btn-group" dropdown>
+            <button
+              id="dropdownMenuButton"
+              dropdownToggle
+              type="button"
+              class="btn btn-secondary dropdown-toggle"
+              aria-controls="dropdown-basic"
+            >
+              Acciones <span class="caret"></span>
+            </button>
+            <ul
+              id="dropdown-basic"
+              *dropdownMenu
+              class="dropdown-menu"
+              role="menu"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <ng-container *ngIf="pedido.estado === 'REGISTRADO'">
+                <li role="menuitem">
+                  <button class="dropdown-item" (click)="verDetalle(pedido.id)">
+                    Ver Detalle
+                  </button>
+                </li>
+                <li role="menuitem">
+                  <button class="dropdown-item" (click)="pagar(pedido.id, pedido.total)">Pagar</button>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="pedido.estado === 'PAGADO'">
+                <li role="menuitem">
+                  <button class="dropdown-item" (click)="registrarDelivery(pedido.id)">
+                    Registrar Delivery
+                  </button>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="pedido.estado !== 'REGISTRADO'">
+                <li role="menuitem">
+                  <span class="dropdown-item disabled" >No disponible</span>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-message *ngIf="pedidos.length === 0" severity="info" text="No hay pedidos disponibles."></p-message>
+</div>

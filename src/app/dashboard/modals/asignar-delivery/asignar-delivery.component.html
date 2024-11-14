@@ -1,0 +1,43 @@
+<div class="modal-body">
+  <h5 class="text-center">Asignar Delivery para Pedido {{ pedidoId }}</h5>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover mt-3">
+      <thead class="thead-light">
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>Usuario</th>
+          <th>Correo</th>
+          <th>Seleccionar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuariosDelivery; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.paterno }}</td>
+          <td>{{ usuario.materno }}</td>
+          <td>{{ usuario.usuario }}</td>
+          <td>{{ usuario.email }}</td>
+          <td class="text-center">
+            <input type="radio" name="usuarioSeleccionado" [value]="usuario.id" [(ngModel)]="usuarioSeleccionado" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal-footer d-flex justify-content-between">
+  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Cerrar</button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="confirmarAsignacion()"
+    [disabled]="!usuarioSeleccionado"
+  >
+    Asignar Delivery
+  </button>
+</div>

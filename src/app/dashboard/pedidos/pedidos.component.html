@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Estados de Pedidos</h2>
+  <p-table [value]="pedidos" [paginator]="true" [rows]="rows" [totalRecords]="totalRecords">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Pedido ID</th>
+        <th>Estado del Pedido</th>
+        <th>Estado del Pago</th>
+        <th>Pago ID</th>
+        <th>Total Pago</th>
+        <th>Tipo de Pago</th>
+        <th>Fecha de Pago</th>
+        <th>Estado de Delivery</th>
+        <th>Comprobante</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pedido>
+      <tr>
+        <td>{{ pedido.pedidoId }}</td>
+        <td>{{ pedido.estadoPedido }}</td>
+        <td>{{ pedido.estadoPago }}</td>
+        <td>{{ pedido.pagoId }}</td>
+        <td>Bs {{ pedido.totalPago | number: '1.2-2' }}</td>
+        <td>{{ pedido.tipoPago }}</td>
+        <td>{{ pedido.fechaPago | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ pedido.estadoDelivery }}</td>
+
+        <!-- Columna para vista previa del comprobante -->
+        <td>
+          <img
+            [src]="pedido.archivoPath"
+            alt="Comprobante"
+            width="50"
+            height="50"
+            style="object-fit: cover; border-radius: 4px; cursor: pointer;"
+            (click)="descargarArchivo(pedido.archivoPath, pedido.archivoNombre)"
+          />
+        </td>
+
+        <!-- Columna para las acciones desplegables -->
+        <td>
+          <div class="btn-group" dropdown>
+            <button id="dropdownMenuButton" dropdownToggle type="button" class="btn btn-secondary dropdown-toggle">
+              Acciones
+            </button>
+            <ul *dropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <ng-container *ngIf="pedido.estadoPago === 'CONFIRMADO'">
+                <li role="menuitem">
+                  <button class="dropdown-item" (click)="abrirModalAsignarDelivery(pedido.pedidoId)">Asignar Delivery</button>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="pedido.estadoPago !== 'CONFIRMADO'">
+                <li role="menuitem" *ngIf="pedido.estadoPago === 'PAGADO'">
+                  <button class="dropdown-item" (click)="confirmarPedido(pedido.pedidoId)">Confirmar</button>
+                </li>
+                <li role="menuitem">
+                  <button class="dropdown-item" (click)="rechazarPedido(pedido.pedidoId)">Rechazar</button>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </td>
+
+
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

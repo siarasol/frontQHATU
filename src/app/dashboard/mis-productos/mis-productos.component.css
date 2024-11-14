@@ -1,0 +1,24 @@
+.custom-carousel .carousel-item {
+  text-align: center;
+  height: 300px; /* Ajusta la altura del contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.product-img {
+  height: 100%;
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor */
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade un poco de sombra a las tarjetas */
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .product-img {
+    height: 200px; /* Altura más pequeña para pantallas móviles */
+  }
+}

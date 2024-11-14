@@ -1,0 +1,39 @@
+.custom-carousel .carousel-item {
+  height: 300px; /* Ajusta la altura del contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.product-img {
+  max-height: 100%;
+  object-fit: contain;
+  position: relative;
+}
+
+.container {
+  padding: 20px; /* Espaciado adicional para el contenedor */
+}
+
+.form-label {
+  font-weight: bold; /* Estilo para la etiqueta del campo */
+}
+
+input[type="number"] {
+  width: 100%; /* Hacer que el campo ocupe el ancho completo */
+}
+
+.btn {
+  padding: 10px 20px; /* Espaciado del botón */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Color primario de Bootstrap */
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Color al pasar el ratón */
+  border-color: #0056b3;
+}

@@ -1,0 +1,97 @@
+<div class="modal-header">
+  <h5 class="modal-title">Agregar Nuevo Producto</h5>
+  <button type="button" class="close" (click)="bsModalRef.hide()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form (ngSubmit)="agregarProducto()">
+    <!-- Nombre del Producto -->
+    <div class="form-group">
+      <label for="nombre">Nombre del Producto</label>
+      <input type="text" class="form-control" id="nombre" [(ngModel)]="producto.nombre" name="nombre" placeholder="Nombre del producto" required>
+    </div>
+
+    <!-- Descripción -->
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea class="form-control" id="descripcion" [(ngModel)]="producto.descripcion" name="descripcion" placeholder="Describe tu producto" required></textarea>
+    </div>
+
+    <!-- Precio -->
+    <div class="form-group">
+      <label for="precio">Precio</label>
+      <input type="number" class="form-control" id="precio" [(ngModel)]="producto.precio" name="precio" placeholder="Ej: 1500.00" required>
+    </div>
+
+    <!-- Categoría (Dropdown dinámico con categorías) -->
+    <div class="form-group">
+      <label for="categoria">Categoría</label>
+      <select class="form-control" id="categoria" [(ngModel)]="categoriaId" name="categoriaId" required>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="stock">Stock Producto</label>
+      <input
+        type="number"
+        class="form-control"
+        id="stock"
+        [(ngModel)]="producto.stock"
+        name="stock"
+        placeholder="Unidades del producto"
+        min="0"
+        step="1"
+        required
+        #stockInput="ngModel"
+        pattern="[0-9]*"
+      />
+      <div *ngIf="stockInput.invalid && stockInput.touched" class="text-danger">
+        <div *ngIf="stockInput.errors?.['required']">El stock es obligatorio</div>
+        <div *ngIf="stockInput.errors?.['pattern']">El stock debe ser un número entero</div>
+      </div>
+    </div>
+
+
+    <!-- Selección de Imágenes con botón estilizado -->
+    <div class="form-group">
+      <label for="imagenes">Seleccionar Imágenes (JPG)</label>
+      <div class="file-upload-wrapper">
+        <button type="button" class="btn btn-primary btn-upload" (click)="triggerFileInput()">
+          <i class="fas fa-upload"></i> Escoge las imágenes
+        </button>
+        <input
+          type="file"
+          class="d-none"
+          id="file-input"
+          (change)="onFileSelect($event)"
+          multiple
+          accept="image/jpeg"
+        />
+        <span class="file-upload-text">{{ labelText }}</span>
+      </div>
+      <div *ngIf="fotosInvalid" class="text-danger mt-2">
+        Debes seleccionar al menos una imagen en formato JPG.
+      </div>
+    </div>
+
+    <!-- Vista previa de imágenes seleccionadas -->
+    <div class="mt-2" *ngIf="fotoUrls.length > 0">
+      <h5>Imágenes seleccionadas:</h5>
+      <div class="d-flex flex-wrap">
+        <div *ngFor="let url of fotoUrls" class="preview-container mr-2 mb-2">
+          <img [src]="url" [alt]="'Vista previa de ' + url" class="img-thumbnail" style="width: 100px; height: auto;">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Botones de acción -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Agregar Producto</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,45 @@
+<div class="container mt-3">
+  <h3 class="text-center">Detalles del Carrito</h3>
+
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td>Bs{{ producto.precio }}</td>
+        <td>Bs{{ producto.totalProd }}</td>
+        <td>
+          <!-- Botón con icono de basurerito -->
+          <button class="btn btn-danger btn-sm" (click)="eliminarProductoDelCarrito(producto.idProducto)">
+            <i class="pi pi-trash"></i>
+          </button>
+        </td>
+      </tr>
+
+      <!-- Fila para mostrar el total -->
+
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="text-end"><strong>Total General:</strong></td>
+        <td><strong class="fs-5">Bs{{ totalGeneral }}</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="row">
+    <div class="col text-center mt-4 d-flex justify-content-center">
+      <button class="btn btn-danger me-2" (click)="cerrarModal()">Cerrar</button>
+      <button class="btn btn-success" (click)="confirmarCarrito()">Confirmar Carrito</button>
+
+    </div>
+  </div>
+
+</div>

@@ -72,26 +72,41 @@ export class RegisterComponent {
   
     // Llama al servicio de registro
     this.usuarioService.registrarUsuario(payload).subscribe(
-      (response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Registro exitoso',
-          detail: 'Tu cuenta ha sido creada exitosamente.',
-        });
+      (response: any) => {
+        if (response.success) {
+          // Mostrar mensaje de éxito del backend
+          const message = response.message || 'Tu cuenta ha sido creada exitosamente.';
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Registro exitoso',
+            detail: message,
+          });
   
-        // Redirige al login
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 2000);
+          // Redirige al login tras un breve tiempo
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000);
+        } else {
+          // Manejar caso donde success sea false
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error en el registro',
+            detail: response.message || 'Ocurrió un error inesperado. Inténtalo nuevamente.',
+          });
+        }
       },
-      (error) => {
+      (error: any) => {
+        // Mostrar mensaje de error del backend
+        const errorMessage = error.error?.message || 'Hubo un error al registrar tu cuenta. Inténtalo de nuevo.';
         this.messageService.add({
           severity: 'error',
           summary: 'Error en el registro',
-          detail: 'Hubo un error al registrar tu cuenta. Inténtalo de nuevo.',
+          detail: errorMessage,
         });
       }
     );
   }
+  
+  
   
 }

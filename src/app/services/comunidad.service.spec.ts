@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ComunidadService } from './comunidad.service';
+import { ComunidadesService } from './comunidad.service';
 
 describe('ComunidadService', () => {
-  let service: ComunidadService;
+  let service: ComunidadesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ComunidadService);
+    service = TestBed.inject(ComunidadesService);
   });
 
   it('should be created', () => {

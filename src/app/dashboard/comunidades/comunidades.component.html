@@ -1,0 +1,79 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Gestión de Comunidades</h2>
+  
+    <!-- Botón Agregar -->
+    <div class="mb-3 text-end">
+      <button pButton icon="pi pi-plus" label="Agregar" class="p-button-success" (click)="agregarComunidad()"></button>
+    </div>
+  
+    <!-- Tabla de Comunidades -->
+    <p-table [value]="comunidades" [paginator]="true" [rows]="5" [resizableColumns]="true" [responsiveLayout]="'scroll'">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nombre</th>
+          <th>Localidad</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-comunidad>
+        <tr>
+          <!-- Condicional para mostrar texto o input editable -->
+          <td>
+            <ng-container *ngIf="!comunidad.editing; else editNombre">
+              {{ comunidad.nombre }}
+            </ng-container>
+            <ng-template #editNombre>
+              <input [(ngModel)]="comunidad.nombre" pInputText />
+            </ng-template>
+          </td>
+  
+          <td>
+            <ng-container *ngIf="!comunidad.editing; else editLocalidad">
+              {{ comunidad.localidad }}
+            </ng-container>
+            <ng-template #editLocalidad>
+              <input [(ngModel)]="comunidad.localidad" pInputText />
+            </ng-template>
+          </td>
+  
+          <td>
+            <ng-container *ngIf="!comunidad.editing; else editDescripcion">
+              {{ comunidad.descripcion }}
+            </ng-container>
+            <ng-template #editDescripcion>
+              <input [(ngModel)]="comunidad.descripcion" pInputText />
+            </ng-template>
+          </td>
+  
+          <td>
+            <!-- Botones de acciones -->
+            <button
+              pButton
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-warning"
+              title="Editar"
+              (click)="activarEdicion(comunidad)"
+              *ngIf="!comunidad.editing"
+            ></button>
+            <button
+              pButton
+              icon="pi pi-save"
+              class="p-button-rounded p-button-success"
+              title="Guardar"
+              (click)="guardarComunidad(comunidad)"
+              *ngIf="comunidad.editing"
+            ></button>
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger"
+              title="Eliminar"
+              (click)="eliminarComunidad(comunidad)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  

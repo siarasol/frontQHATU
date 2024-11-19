@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { MisProductosComponent } from './mis-productos/mis-productos.component';
+import { ComunidadesComponent } from './comunidades/comunidades.component';
 import { ProductosComponent } from './productos/productos.component';
 import { SeguimientoComprasComponent } from './seguimiento-compras/seguimiento-compras.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
@@ -42,6 +43,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   declarations: [
 
     DashboardComponent,
+    ComunidadesComponent,
     MisProductosComponent,
     AgregarProductoComponent,
     ProductosComponent,

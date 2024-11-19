@@ -15,7 +15,12 @@
             <span class="ml-2" *ngIf="!sidebarCollapsed">Mis Productos</span>
           </a>
         </li>
-
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link text-white d-flex align-items-center" routerLink="comunidades">
+            <i class="pi pi-tags"></i>
+            <span class="ml-2" *ngIf="!sidebarCollapsed">Comunidades</span>
+          </a>
+        </li>
         <!-- Opción para Comprador -->
         <li class="nav-item" *ngIf="isComprador || isAdmin">
           <a class="nav-link text-white d-flex align-items-center" routerLink="productos">

@@ -5,6 +5,7 @@ import { MisProductosComponent } from './mis-productos/mis-productos.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { DeliveryComponent } from './delivery/delivery.component';
+import { ComunidadesComponent } from './comunidades/comunidades.component';
 import { SeguimientoComprasComponent } from './seguimiento-compras/seguimiento-compras.component';
 import { DefaultDashboardComponent } from './default-dashboard/default-dashboard.component';  // Importamos el nuevo componente
 import { PedidosComponent } from './pedidos/pedidos.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'reportes', component: ReportesComponent },
       { path: 'delivery', component: DeliveryComponent },
       { path: 'pedidos', component: PedidosComponent },
+      { path: 'comunidades', component: ComunidadesComponent },
       { path: 'seguimiento-compras', component: SeguimientoComprasComponent }, // Ruta opcional
     ]
   }

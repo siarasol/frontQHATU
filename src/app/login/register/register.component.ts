@@ -5,6 +5,8 @@ import { Usuario } from '../../models/usuario.model';
 import { FormsModule } from '@angular/forms'; // Asegúrate de que esto esté importado
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service'; // Asegúrate de ajustar la ruta
+import { ComunidadesService } from '../../services/comunidad.service';
+
 import { ToastModule } from 'primeng/toast';
 
 import { Router } from '@angular/router';
@@ -18,22 +20,41 @@ import { MessageService } from 'primeng/api';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  usuarioForm: Usuario = {
-    active: true,
-    createdBy: '  ',
-    nombre: '',
+  usuarioForm: any = {
+    usuario: '',
     email: '',
     password: '',
     telefono: '',
     direccion: '',
-    usuario: '',
+    nombre: '',
+    paterno: '',
     materno: '',
-    paterno: ''
+    rol: '',
+    comunidad: ''
   };
+  comunidades: any[] = [];
 
-  constructor(private http: HttpClient,private usuarioService: UsuarioService, private router: Router, private messageService: MessageService) {}
+
+  constructor(private http: HttpClient,private usuarioService: UsuarioService, private router: Router, private messageService: MessageService, private comunidadesService: ComunidadesService) {}
+  ngOnInit(): void {
+    this.cargarComunidades();
+  }
+
+  cargarComunidades(): void {
+    this.comunidadesService.obtenerComunidades().subscribe((data) => {
+      this.comunidades = data;
+    });
+  }
+  onRolChange(event: any): void {
+    if (this.usuarioForm.rol === '3') {
+      // Si selecciona Vendedor, cargamos las comunidades
+      this.cargarComunidades();
+    } else {
+      // Si cambia a Comprador, limpiamos la comunidad
+      this.usuarioForm.comunidad = '';
+    }
+  }
   onSubmit(registerForm: NgForm) {
-    console.log('gaaa');
     if (registerForm.invalid) {
       this.messageService.add({
         severity: 'warn',
@@ -42,24 +63,28 @@ export class RegisterComponent {
       });
       return;
     }
-
+  
+    const payload = {
+      ...this.usuarioForm,
+      rol: { id: parseInt(this.usuarioForm.rol, 10) },
+      comunidad: this.usuarioForm.rol === '3' ? { id: parseInt(this.usuarioForm.comunidad, 10) } : null
+    };
+  
     // Llama al servicio de registro
-    this.usuarioService.registrarUsuario(this.usuarioForm).subscribe(
+    this.usuarioService.registrarUsuario(payload).subscribe(
       (response) => {
-        // Si el registro fue exitoso
         this.messageService.add({
           severity: 'success',
           summary: 'Registro exitoso',
           detail: 'Tu cuenta ha sido creada exitosamente.',
         });
-
+  
         // Redirige al login
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2000);
       },
       (error) => {
-        // Si hubo un error en el registro
         this.messageService.add({
           severity: 'error',
           summary: 'Error en el registro',
@@ -68,4 +93,5 @@ export class RegisterComponent {
       }
     );
   }
+  
 }

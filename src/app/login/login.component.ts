@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {}
 
   onSubmit(form: NgForm) {
-    console.log('gaaaaaa');
+    
     if (form.valid) {
       this.authService.login(this.usuario, this.password).subscribe({
         next: (response) => {
